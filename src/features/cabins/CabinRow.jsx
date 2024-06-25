@@ -1,9 +1,11 @@
-import styled from "styled-components";
-import { formatCurrency } from "../../utils/helpers";
-import Button from "../../ui/Button";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCabin } from "../../services/apiCabins";
-import { toast } from "react-toastify";
+import styled from 'styled-components';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
+import { formatCurrency } from '../../utils/helpers';
+import { deleteCabin } from '../../services/apiCabins';
+import Button from '../../ui/Button';
+import CreateCabinForm from './CreateCabinForm';
 
 const TableRow = styled.div`
   display: grid;
@@ -30,21 +32,22 @@ const Cabin = styled.div`
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-grey-600);
-  font-family: "Sono";
+  font-family: 'Sono';
 `;
 
 const Price = styled.div`
-  font-family: "Sono";
+  font-family: 'Sono';
   font-weight: 600;
 `;
 
 const Discount = styled.div`
-  font-family: "Sono";
+  font-family: 'Sono';
   font-weight: 500;
   color: var(--color-green-700);
 `;
 
 const CabinRow = ({ cabin }) => {
+  const [showForm, setShowForm] = useState(false);
   const {
     id: cabinId,
     name,
@@ -59,31 +62,39 @@ const CabinRow = ({ cabin }) => {
   const { isPending: isDeleting, mutate } = useMutation({
     mutationFn: deleteCabin,
     onSuccess: () => {
-      toast.success("Cabin successfully deleted");
+      toast.success('Cabin successfully deleted');
 
       queryClient.invalidateQueries({
-        queryKey: ["cabins"],
+        queryKey: ['cabins'],
       });
     },
     onError: (err) => toast.warn(err.message),
   });
 
   return (
-    <TableRow role="row" key={cabinId}>
-      <Img src={image} />
-      <Cabin>{name}</Cabin>
-      <div>Fits up to {maxCapacity} guests</div>
-      <Price>{formatCurrency(regularPrice)}</Price>
-      <Discount>{formatCurrency(discount)}</Discount>
-      <Button
-        $variation="danger"
-        $size="small"
-        onClick={() => mutate(cabinId)}
-        disabled={isDeleting}
-      >
-        Delete
-      </Button>
-    </TableRow>
+    <>
+      <TableRow role="row" key={cabinId}>
+        <Img src={image} />
+        <Cabin>{name}</Cabin>
+        <div>Fits up to {maxCapacity} guests</div>
+        <Price>{formatCurrency(regularPrice)}</Price>
+        <Discount>{formatCurrency(discount)}</Discount>
+        <div className="flex justify-between">
+          <Button $size="small" onClick={() => setShowForm((form) => !form)}>
+            Edit
+          </Button>
+          <Button
+            $variation="danger"
+            $size="small"
+            onClick={() => mutate(cabinId)}
+            disabled={isDeleting}
+          >
+            Delete
+          </Button>
+        </div>
+      </TableRow>
+      {showForm && <CreateCabinForm cabinToEdit={cabin} />}
+    </>
   );
 };
 

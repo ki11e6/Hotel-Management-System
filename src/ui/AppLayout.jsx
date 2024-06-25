@@ -1,9 +1,9 @@
-import { Outlet } from "react-router";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import styled from "styled-components";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Outlet } from 'react-router';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import styled from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
