@@ -19,7 +19,7 @@ function Cabins() {
           Add new cabin
         </Button>
       </Row>
-      {showForm && <CreateCabinForm />}
+      {showForm && <CreateCabinForm visibility={setShowForm} />}
     </>
   );
 }
