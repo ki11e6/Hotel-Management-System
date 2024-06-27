@@ -9,7 +9,7 @@ import FormRow from '../../ui/FormRow';
 import useCreateCabin from './useCreateCabin';
 import useEditCabin from './useEditCabin';
 
-function CreateCabinForm({ cabinToEdit = {}, visibility: showForm }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModel }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
   const { register, handleSubmit, reset, getValues, formState } = useForm({
@@ -27,23 +27,31 @@ function CreateCabinForm({ cabinToEdit = {}, visibility: showForm }) {
       editCabin(
         { newCabinData: { ...data, image }, id: editId },
         {
-          onSuccess: () => reset(),
+          onSuccess: () => {
+            reset();
+            onCloseModel?.();
+          },
         }
       );
     } else
       createCabin(
         { ...data, image },
         {
-          onSuccess: () => reset(),
+          onSuccess: () => {
+            reset();
+            onCloseModel?.();
+          },
         }
       );
-    showForm((show) => !show);
   }
 
   const isLoading = isEditing || isCreating;
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      type={onCloseModel ? 'model' : 'regular'}
+    >
       <FormRow id="name" label="Cabin name" error={errors?.name?.message}>
         <Input
           disabled={isLoading}
@@ -131,7 +139,7 @@ function CreateCabinForm({ cabinToEdit = {}, visibility: showForm }) {
           disabled={isLoading}
           $variation="secondary"
           type="reset"
-          onClick={() => reset()}
+          onClick={() => onCloseModel?.()}
         >
           Cancel
         </Button>
