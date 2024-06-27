@@ -14,21 +14,17 @@ This is internal hotal management system used by employees or owner to manage bo
 
 ## Stack using
 
-| Technology              | Image                       | Description          |
-| ----------------------- | --------------------------- | -------------------- |
-| Routing                 | ![Alt text](url-to-image1)  | Description of Tech1 |
-| Styling                 | ![Alt text](url-to-image2)  | Description of Tech2 |
-| Remote state management | ![Alt text](url-to-image3)  | Description of Tech3 |
-| UI state management     | ![Alt text](url-to-image3)  | Description of Tech3 |
-| Form management         | ![Alt text](url-to-image3)  | Description of Tech3 |
-| Backend                 | ![superbase](url-to-image3) | Description of Tech3 |
+| Technology              | Image                                                                                                                                                                                                                                   | Description       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Routing                 | <a href="https://reactrouter.com/" target="_blank" rel="noreferrer"><img src="https://www.svgrepo.com/show/354262/react-router.svg" width="36" height="36" alt="" /></a>                                                                | React Router 6.4  |
+| Styling                 | <a href="https://styled-components.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="36" height="36" alt="styledComponents" /></a>        | Styled Components |
+| Remote state management | <a href="https://tanstack.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/TanStack/query/main/media/emblem-light.svg" width="36" height="36" alt="React Query" /></a>                                | React Query       |
+| UI state management     | <a href="https://reactjs.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/react-colored.svg" width="36" height="36" alt="React" /></a>        | Context API       |
+| Form management         | <img src="https://raw.githubusercontent.com/react-hook-form/react-hook-form/master/docs/logo.png" alt="React Hook Form "  height="36"/>                                                                                                 | React Form        |
+| Backend                 | <a href="https://supabase.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/supabase-colored.svg" width="36" height="36" alt="supabase" /></a> | Supabase          |
 
-## Installation
+## Learned
 
-Provide step by step series of examples and explanations about how to get a development env running.
-
-```bash
-git clone https://yourproject.git
-cd yourproject
-npm install
-```
+- React patterns : React Render props pattern, Higher order component pattern and Compound component pattern
+- React Portal
+- cloneElement

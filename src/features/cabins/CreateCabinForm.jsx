@@ -9,7 +9,7 @@ import FormRow from '../../ui/FormRow';
 import useCreateCabin from './useCreateCabin';
 import useEditCabin from './useEditCabin';
 
-function CreateCabinForm({ cabinToEdit = {}, onCloseModel }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
   const { register, handleSubmit, reset, getValues, formState } = useForm({
@@ -29,7 +29,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModel }) {
         {
           onSuccess: () => {
             reset();
-            onCloseModel?.();
+            onCloseModal?.();
           },
         }
       );
@@ -39,7 +39,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModel }) {
         {
           onSuccess: () => {
             reset();
-            onCloseModel?.();
+            onCloseModal?.();
           },
         }
       );
@@ -50,7 +50,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModel }) {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      type={onCloseModel ? 'model' : 'regular'}
+      type={onCloseModal ? 'model' : 'regular'}
     >
       <FormRow id="name" label="Cabin name" error={errors?.name?.message}>
         <Input
@@ -139,7 +139,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModel }) {
           disabled={isLoading}
           $variation="secondary"
           type="reset"
-          onClick={() => onCloseModel?.()}
+          onClick={() => onCloseModal?.()}
         >
           Cancel
         </Button>

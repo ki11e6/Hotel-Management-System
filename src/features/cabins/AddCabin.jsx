@@ -1,22 +1,18 @@
-import { useState } from 'react';
 import Button from '../../ui/Button';
 import CreateCabinForm from './CreateCabinForm';
 import Modal from '../../ui/Modal';
 
 const AddCabin = () => {
-  const [isOpenModel, setIsOpenModel] = useState(false);
-
+  //implimenting compound component
   return (
-    <div>
-      <Button onClick={() => setIsOpenModel((show) => !show)} type="button">
-        Add new cabin
-      </Button>
-      {isOpenModel && (
-        <Modal onClose={() => setIsOpenModel(false)}>
-          <CreateCabinForm onCloseModel={() => setIsOpenModel(false)} />
-        </Modal>
-      )}
-    </div>
+    <Modal>
+      <Modal.Open opens="cabin-form">
+        <Button type="button">Add new Cabin</Button>
+      </Modal.Open>
+      <Modal.Window name="cabin-form">
+        <CreateCabinForm />
+      </Modal.Window>
+    </Modal>
   );
 };
 
