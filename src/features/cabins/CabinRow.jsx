@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { formatCurrency } from '../../utils/helpers';
 import Button from '../../ui/Button';
 import CreateCabinForm from './CreateCabinForm';
 import useDeleteCabin from './useDeleteCabin';
 import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
 import useCreateCabin from './useCreateCabin';
+import Modal from '../../ui/Modal';
+import ConfirmDelete from '../../ui/ConfirmDelete';
 
 const TableRow = styled.div`
   display: grid;
@@ -47,7 +48,6 @@ const Discount = styled.div`
 `;
 
 const CabinRow = ({ cabin }) => {
-  const [showForm, setShowForm] = useState(false);
   const { createCabin, isCreating } = useCreateCabin();
 
   const {
@@ -74,38 +74,60 @@ const CabinRow = ({ cabin }) => {
   const { isDeleting, deleteCabin } = useDeleteCabin();
 
   return (
-    <>
-      <TableRow role="row" key={cabinId}>
-        <Img src={image} />
-        <Cabin>{name}</Cabin>
-        <div>Fits up to {maxCapacity} guests</div>
-        <Price>{formatCurrency(regularPrice)}</Price>
-        {discount ? (
-          <Discount>{formatCurrency(discount)}</Discount>
-        ) : (
-          <span>&mdash;</span>
-        )}
-        <div className="flex justify-between">
-          <Button onClick={() => createDuplicate()} disabled={isCreating}>
-            <HiSquare2Stack />
-          </Button>
-          <Button $size="small" onClick={() => setShowForm((form) => !form)}>
-            <HiPencil />
-          </Button>
-          <Button
-            $variation="danger"
-            $size="small"
-            onClick={() => deleteCabin(cabinId)}
-            disabled={isDeleting}
-          >
-            <HiTrash />
-          </Button>
-        </div>
-      </TableRow>
-      {showForm && (
-        <CreateCabinForm cabinToEdit={cabin} visibility={setShowForm} />
+    <TableRow role="row" key={cabinId}>
+      {/* image column */}
+      <Img src={image} />
+
+      {/* cabin name column */}
+      <Cabin>{name}</Cabin>
+
+      {/* capacity column */}
+      <div>Fits up to {maxCapacity} guests</div>
+
+      {/* price column */}
+      <Price>{formatCurrency(regularPrice)}</Price>
+
+      {/* discount column */}
+      {discount ? (
+        <Discount>{formatCurrency(discount)}</Discount>
+      ) : (
+        <span>&mdash;</span>
       )}
-    </>
+
+      {/* buttons column */}
+      <div className="flex justify-between">
+        {/* duplicate button */}
+        <Button onClick={() => createDuplicate()} disabled={isCreating}>
+          <HiSquare2Stack />
+        </Button>
+
+        {/* edit button and Modal */}
+        <Modal>
+          <Modal.Open opens="cabin-edit">
+            <Button $size="small">
+              <HiPencil />
+            </Button>
+          </Modal.Open>
+          <Modal.Window name="cabin-edit">
+            <CreateCabinForm cabinToEdit={cabin} />
+          </Modal.Window>
+
+          {/* delete button and Modal*/}
+          <Modal.Open opens="cabin-delete">
+            <Button $variation="danger" $size="small" disabled={isDeleting}>
+              <HiTrash />
+            </Button>
+          </Modal.Open>
+          <Modal.Window name="cabin-delete">
+            <ConfirmDelete
+              onConfirm={() => deleteCabin(cabinId)}
+              disabled={isDeleting}
+              resourceName={`Cabin ${name}`}
+            />
+          </Modal.Window>
+        </Modal>
+      </div>
+    </TableRow>
   );
 };
 
