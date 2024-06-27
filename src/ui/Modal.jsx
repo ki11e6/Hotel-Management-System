@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
 
@@ -51,7 +52,8 @@ const Button = styled.button`
 `;
 
 const Modal = ({ children, onClose }) => {
-  return (
+  //using portal to make model use anywhere outside of Cabin Component.
+  return createPortal(
     <Overlay>
       <StyledModal>
         <Button onClick={onClose}>
@@ -59,7 +61,8 @@ const Modal = ({ children, onClose }) => {
         </Button>
         {children}
       </StyledModal>
-    </Overlay>
+    </Overlay>,
+    document.body //we can use any dom element
   );
 };
 

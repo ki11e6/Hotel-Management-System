@@ -8,7 +8,7 @@ const AddCabin = () => {
 
   return (
     <div>
-      <Button onClick={() => setIsOpenModel((show) => !show)}>
+      <Button onClick={() => setIsOpenModel((show) => !show)} type="button">
         Add new cabin
       </Button>
       {isOpenModel && (
