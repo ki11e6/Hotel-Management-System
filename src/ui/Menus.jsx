@@ -69,8 +69,8 @@ const MenusContext = createContext();
 const Menus = ({ children }) => {
   const [openId, setOpenId] = useState('');
   const [position, setPosition] = useState(null);
-  const open = (id) => setOpenId(id);
   const close = () => setOpenId('');
+  const open = setOpenId;
   return (
     <MenusContext.Provider
       value={{ openId, close, open, setPosition, position }}
@@ -84,23 +84,24 @@ function Toggle({ id }) {
   const { openId, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
+    e.stopPropagation();
     //to get position of nearest button from the target
     const rect = e.target.closest('button').getBoundingClientRect();
     setPosition({
       x: window.innerWidth - rect.width - rect.x,
       y: rect.y + rect.height + 8,
     });
-    openId !== id || openId === '' ? open(id) : close();
+    openId === '' || openId !== id ? open(id) : close();
   }
   return (
-    <StyledToggle onClick={(e) => handleClick(e)}>
+    <StyledToggle onClick={handleClick}>
       <HiEllipsisVertical />
     </StyledToggle>
   );
 }
 function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext);
-  const ref = useOutsideClick(close);
+  const ref = useOutsideClick(close, false);
   if (openId !== id) return null;
   return createPortal(
     <StyledList position={position} ref={ref}>
