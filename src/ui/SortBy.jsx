@@ -8,7 +8,6 @@ const SortBy = ({ options }) => {
     searchParams.set('sortBy', e.target.value);
     setSearchParams(searchParams);
   }
-  console.log(options);
   return (
     <Select
       options={options}

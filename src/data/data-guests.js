@@ -2,12 +2,13 @@
 
 export const guests = [
   {
-    // id: 1000,
     fullName: 'Jonas Schmedtmann',
     email: 'hello@jonas.io',
     nationality: 'Portugal',
     nationalID: '3525436345',
     countryFlag: 'https://flagcdn.com/pt.svg',
+    gender: 'Male',
+    phoneNo: 1234567890,
   },
   {
     fullName: 'Jonathan Smith',
@@ -15,6 +16,8 @@ export const guests = [
     nationality: 'Great Britain',
     nationalID: '4534593454',
     countryFlag: 'https://flagcdn.com/gb.svg',
+    gender: 'Male',
+    phoneNo: 2345678901,
   },
   {
     fullName: 'Jonatan Johansson',
@@ -22,6 +25,8 @@ export const guests = [
     nationality: 'Finland',
     nationalID: '9374074454',
     countryFlag: 'https://flagcdn.com/fi.svg',
+    gender: 'Male',
+    phoneNo: 3456789012,
   },
   {
     fullName: 'Jonas Mueller',
@@ -29,6 +34,8 @@ export const guests = [
     nationality: 'Germany',
     nationalID: '1233212288',
     countryFlag: 'https://flagcdn.com/de.svg',
+    gender: 'Male',
+    phoneNo: 4567890123,
   },
   {
     fullName: 'Jonas Anderson',
@@ -36,6 +43,8 @@ export const guests = [
     nationality: 'Bolivia (Plurinational State of)',
     nationalID: '0988520146',
     countryFlag: 'https://flagcdn.com/bo.svg',
+    gender: 'Male',
+    phoneNo: 5678901234,
   },
   {
     fullName: 'Jonathan Williams',
@@ -43,15 +52,17 @@ export const guests = [
     nationality: 'United States of America',
     nationalID: '633678543',
     countryFlag: 'https://flagcdn.com/us.svg',
+    gender: 'Male',
+    phoneNo: 6789012345,
   },
-
-  // GPT
   {
     fullName: 'Emma Watson',
     email: 'emma@gmail.com',
     nationality: 'United Kingdom',
     nationalID: '1234578901',
     countryFlag: 'https://flagcdn.com/gb.svg',
+    gender: 'Female',
+    phoneNo: 7890123456,
   },
   {
     fullName: 'Mohammed Ali',
@@ -59,6 +70,8 @@ export const guests = [
     nationality: 'Egypt',
     nationalID: '987543210',
     countryFlag: 'https://flagcdn.com/eg.svg',
+    gender: 'Male',
+    phoneNo: 8901234567,
   },
   {
     fullName: 'Maria Rodriguez',
@@ -66,6 +79,8 @@ export const guests = [
     nationality: 'Spain',
     nationalID: '1098765321',
     countryFlag: 'https://flagcdn.com/es.svg',
+    gender: 'Female',
+    phoneNo: 9012345678,
   },
   {
     fullName: 'Li Mei',
@@ -73,6 +88,8 @@ export const guests = [
     nationality: 'China',
     nationalID: '102934756',
     countryFlag: 'https://flagcdn.com/cn.svg',
+    gender: 'Female',
+    phoneNo: 9123456789,
   },
   {
     fullName: 'Khadija Ahmed',
@@ -80,6 +97,8 @@ export const guests = [
     nationality: 'Sudan',
     nationalID: '1023457890',
     countryFlag: 'https://flagcdn.com/sd.svg',
+    gender: 'Female',
+    phoneNo: 9234567890,
   },
   {
     fullName: 'Gabriel Silva',
@@ -87,6 +106,8 @@ export const guests = [
     nationality: 'Brazil',
     nationalID: '109283465',
     countryFlag: 'https://flagcdn.com/br.svg',
+    gender: 'Male',
+    phoneNo: 9345678901,
   },
   {
     fullName: 'Maria Gomez',
@@ -94,6 +115,8 @@ export const guests = [
     nationality: 'Mexico',
     nationalID: '108765421',
     countryFlag: 'https://flagcdn.com/mx.svg',
+    gender: 'Female',
+    phoneNo: 9456789012,
   },
   {
     fullName: 'Ahmed Hassan',
@@ -101,6 +124,8 @@ export const guests = [
     nationality: 'Egypt',
     nationalID: '1077777777',
     countryFlag: 'https://flagcdn.com/eg.svg',
+    gender: 'Male',
+    phoneNo: 9567890123,
   },
   {
     fullName: 'John Doe',
@@ -108,6 +133,8 @@ export const guests = [
     nationality: 'United States',
     nationalID: '3245908744',
     countryFlag: 'https://flagcdn.com/us.svg',
+    gender: 'Male',
+    phoneNo: 9678901234,
   },
   {
     fullName: 'Fatima Ahmed',
@@ -115,6 +142,8 @@ export const guests = [
     nationality: 'Pakistan',
     nationalID: '1089999363',
     countryFlag: 'https://flagcdn.com/pk.svg',
+    gender: 'Female',
+    phoneNo: 9789012345,
   },
   {
     fullName: 'David Smith',
@@ -122,6 +151,8 @@ export const guests = [
     nationality: 'Australia',
     nationalID: '44450960283',
     countryFlag: 'https://flagcdn.com/au.svg',
+    gender: 'Male',
+    phoneNo: 9890123456,
   },
   {
     fullName: 'Marie Dupont',
@@ -129,6 +160,8 @@ export const guests = [
     nationality: 'France',
     nationalID: '06934233728',
     countryFlag: 'https://flagcdn.com/fr.svg',
+    gender: 'Female',
+    phoneNo: 9901234567,
   },
   {
     fullName: 'Ramesh Patel',
@@ -136,6 +169,8 @@ export const guests = [
     nationality: 'India',
     nationalID: '9875412303',
     countryFlag: 'https://flagcdn.com/in.svg',
+    gender: 'Male',
+    phoneNo: 9912345678,
   },
   {
     fullName: 'Fatimah Al-Sayed',
@@ -143,6 +178,8 @@ export const guests = [
     nationality: 'Kuwait',
     nationalID: '0123456789',
     countryFlag: 'https://flagcdn.com/kw.svg',
+    gender: 'Female',
+    phoneNo: 9923456789,
   },
   {
     fullName: 'Nina Williams',
@@ -150,6 +187,8 @@ export const guests = [
     nationality: 'South Africa',
     nationalID: '2345678901',
     countryFlag: 'https://flagcdn.com/za.svg',
+    gender: 'Female',
+    phoneNo: 9934567890,
   },
   {
     fullName: 'Taro Tanaka',
@@ -157,6 +196,8 @@ export const guests = [
     nationality: 'Japan',
     nationalID: '3456789012',
     countryFlag: 'https://flagcdn.com/jp.svg',
+    gender: 'Male',
+    phoneNo: 9945678901,
   },
   {
     fullName: 'Abdul Rahman',
@@ -164,6 +205,8 @@ export const guests = [
     nationality: 'Saudi Arabia',
     nationalID: '4567890123',
     countryFlag: 'https://flagcdn.com/sa.svg',
+    gender: 'Male',
+    phoneNo: 9956789012,
   },
   {
     fullName: 'Julie Nguyen',
@@ -171,6 +214,8 @@ export const guests = [
     nationality: 'Vietnam',
     nationalID: '5678901234',
     countryFlag: 'https://flagcdn.com/vn.svg',
+    gender: 'Female',
+    phoneNo: 9967890123,
   },
   {
     fullName: 'Sara Lee',
@@ -178,6 +223,8 @@ export const guests = [
     nationality: 'South Korea',
     nationalID: '6789012345',
     countryFlag: 'https://flagcdn.com/kr.svg',
+    gender: 'Female',
+    phoneNo: 9978901234,
   },
   {
     fullName: 'Carlos Gomez',
@@ -185,6 +232,8 @@ export const guests = [
     nationality: 'Colombia',
     nationalID: '7890123456',
     countryFlag: 'https://flagcdn.com/co.svg',
+    gender: 'Male',
+    phoneNo: 9989012345,
   },
   {
     fullName: 'Emma Brown',
@@ -192,6 +241,8 @@ export const guests = [
     nationality: 'Canada',
     nationalID: '8901234567',
     countryFlag: 'https://flagcdn.com/ca.svg',
+    gender: 'Female',
+    phoneNo: 9990123456,
   },
   {
     fullName: 'Juan Hernandez',
@@ -199,6 +250,8 @@ export const guests = [
     nationality: 'Argentina',
     nationalID: '4343433333',
     countryFlag: 'https://flagcdn.com/ar.svg',
+    gender: 'Male',
+    phoneNo: 1234567891,
   },
   {
     fullName: 'Ibrahim Ahmed',
@@ -206,6 +259,8 @@ export const guests = [
     nationality: 'Nigeria',
     nationalID: '2345678009',
     countryFlag: 'https://flagcdn.com/ng.svg',
+    gender: 'Male',
+    phoneNo: 2345678902,
   },
   {
     fullName: 'Mei Chen',
@@ -213,5 +268,7 @@ export const guests = [
     nationality: 'Taiwan',
     nationalID: '3456117890',
     countryFlag: 'https://flagcdn.com/tw.svg',
+    gender: 'Female',
+    phoneNo: 3456789013,
   },
 ];
