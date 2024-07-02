@@ -1,11 +1,22 @@
 import { getToday } from '../utils/helpers';
 import supabase from './supabase';
 
-export async function getAllBookings() {
+export async function getAllBookings({ filter, sortBy }) {
   try {
-    const { data: bookings, error } = await supabase
+    let query = supabase
       .from('bookings')
       .select('*, cabins(name), guests(fullName,email)');
+
+    //Filter
+    if (filter) query = query.eq(filter.field, filter.value);
+
+    //SortBy
+    if (sortBy)
+      query = query.order(sortBy.field, {
+        ascending: sortBy.direction === 'asc',
+      });
+
+    const { data: bookings, error } = await query;
     if (error) throw error;
     return bookings;
   } catch (error) {
@@ -15,18 +26,20 @@ export async function getAllBookings() {
 }
 
 export async function getBooking(id) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .select('*, cabins(*), guests(*)')
-    .eq('id', id)
-    .single();
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('*, cabins(*), guests(*)')
+      .eq('id', id)
+      .single();
 
-  if (error) {
-    console.error(error);
-    throw new Error('Booking not found');
+    if (error) throw error;
+
+    return data;
+  } catch (error) {
+    console.error('Error getting booking with id', error);
+    throw new Error(error.massage || `Unable to get ${id} booking`);
   }
-
-  return data;
 }
 
 // Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
