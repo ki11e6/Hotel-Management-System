@@ -28,3 +28,4 @@ This is internal hotal management system used by employees or owner to manage bo
 - React patterns : React Render props pattern, Higher order component pattern and Compound component pattern
 - React Portal
 - cloneElement
+- Pre-fetching

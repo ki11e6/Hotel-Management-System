@@ -2,6 +2,7 @@ import { PAGE_SIZE } from '../utils/constants';
 import { getToday } from '../utils/helpers';
 import supabase from './supabase';
 
+//Get all booking from database
 export async function getAllBookings({ filter, sortBy, page }) {
   try {
     let query = supabase
@@ -9,13 +10,16 @@ export async function getAllBookings({ filter, sortBy, page }) {
       .select('*, cabins(name), guests(fullName,email)', { count: 'exact' });
 
     //Filter
-    if (filter) query = query.eq(filter.field, filter.value);
+    if (filter) {
+      query = query.eq(filter.field, filter.value);
+    }
 
     //SortBy
-    if (sortBy)
+    if (sortBy) {
       query = query.order(sortBy.field, {
         ascending: sortBy.direction === 'asc',
       });
+    }
     //Pagination
     if (page) {
       const from = (page - 1) * PAGE_SIZE;
@@ -32,6 +36,7 @@ export async function getAllBookings({ filter, sortBy, page }) {
   }
 }
 
+//Get single booking with id
 export async function getBooking(id) {
   try {
     const { data, error } = await supabase
@@ -46,6 +51,26 @@ export async function getBooking(id) {
   } catch (error) {
     console.error('Error getting booking with id', error);
     throw new Error(error.massage || `Unable to get ${id} booking`);
+  }
+}
+
+//Update single booking with id
+export async function updateBooking(id, obj) {
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .update(obj)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      throw error;
+    }
+    return data;
+  } catch (error) {
+    console.error(`Error when updating booking with id`, error);
+    throw new Error(error.massage || `Unable to update booking with id: ${id}`);
   }
 }
 
@@ -99,21 +124,6 @@ export async function getStaysTodayActivity() {
   if (error) {
     console.error(error);
     throw new Error('Bookings could not get loaded');
-  }
-  return data;
-}
-
-export async function updateBooking(id, obj) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .update(obj)
-    .eq('id', id)
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error('Booking could not be updated');
   }
   return data;
 }
