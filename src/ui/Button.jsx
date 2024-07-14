@@ -19,6 +19,7 @@ const sizes = {
     font-weight: 500;
   `,
 };
+//Transient Props: Prefix props with $ to automatically exclude them from being passed to the DOM
 
 const variations = {
   primary: css`
@@ -47,7 +48,7 @@ const variations = {
     }
   `,
 };
-//Transient Props: Prefix props with $ to automatically exclude them from being passed to the DOM
+
 const Button = styled.button`
   border: none;
   border-radius: var(--border-radius-sm);

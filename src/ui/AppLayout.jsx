@@ -2,13 +2,12 @@ import { Outlet } from 'react-router';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import styled from 'styled-components';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
   padding: 4rem 4.8rem 6.4rem;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const StyledAppLayout = styled.div`
@@ -36,13 +35,6 @@ const AppLayout = () => {
           <Outlet />
         </Container>
       </Main>
-      <ToastContainer
-        position="top-center"
-        theme="colored"
-        newestOnTop="true"
-        pauseOnHover
-        closeOnClick
-      />
     </StyledAppLayout>
   );
 };

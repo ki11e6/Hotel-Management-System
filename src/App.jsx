@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ToastContainer } from 'react-toastify';
 // styling
 import GolbalStyles from './styles/GlobalStyles';
 //solves automatic filtering of unknown props from Styled-components
@@ -47,11 +48,18 @@ const App = () => {
               <Route path="cabins" element={<Cabins />} />
               <Route path="settings" element={<Settings />} />
               <Route path="users" element={<Users />} />
-              <Route path="login" element={<Login />} />
-              <Route path="*" element={<PageNotFound />} />
             </Route>
+            <Route path="login" element={<Login />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
+        <ToastContainer
+          position="top-center"
+          theme="colored"
+          newestOnTop="true"
+          pauseOnHover
+          closeOnClick
+        />
       </StyleSheetManager>
     </QueryClientProvider>
   );
