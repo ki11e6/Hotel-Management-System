@@ -69,8 +69,24 @@ export async function updateBooking(id, obj) {
     }
     return data;
   } catch (error) {
-    console.error(`Error when updating booking with id`, error);
+    console.error(`Error updating booking with id`, error);
     throw new Error(error.massage || `Unable to update booking with id: ${id}`);
+  }
+}
+
+//Delete booking with id
+export async function deleteBooking(id) {
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .delete()
+      .eq('id', id);
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error('Error deleting booking', error);
+    throw new Error(error.message || `Unable to delete booking with id ${id}`);
   }
 }
 
@@ -124,17 +140,6 @@ export async function getStaysTodayActivity() {
   if (error) {
     console.error(error);
     throw new Error('Bookings could not get loaded');
-  }
-  return data;
-}
-
-export async function deleteBooking(id) {
-  // REMEMBER RLS POLICIES
-  const { data, error } = await supabase.from('bookings').delete().eq('id', id);
-
-  if (error) {
-    console.error(error);
-    throw new Error('Booking could not be deleted');
   }
   return data;
 }

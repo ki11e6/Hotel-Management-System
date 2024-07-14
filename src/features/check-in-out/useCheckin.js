@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 const useCheckin = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { mutate: checkIn, isLoading: isCheckingIn } = useMutation({
+  const { mutate: checkIn, isPending: isCheckingIn } = useMutation({
     mutationFn: ({ bookingId, breakfast }) =>
       updateBooking(bookingId, {
         status: 'checked-in',
