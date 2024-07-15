@@ -29,3 +29,5 @@ This is internal hotal management system used by employees or owner to manage bo
 - React Portal
 - cloneElement
 - Pre-fetching
+- react query cacheing
+- useNavigate's replace:true use

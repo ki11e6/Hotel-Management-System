@@ -1,54 +1,51 @@
-import { useState } from 'react';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import Input from '../../ui/Input';
 import FormRowVertical from '../../ui/FormRowVertical';
 import useLogin from './useLogin';
 import SpinnerMini from '../../ui/SpinnerMini';
-import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const { login, isLoging } = useLogin();
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!email || !password) {
-      toast.info('Enter email & password');
-      return;
-    }
-    login(
-      { email, password },
-      {
-        onSettled: () => {
-          setEmail(''), setPassword('');
-        },
-      }
-    );
+  const { register, formState, handleSubmit } = useForm();
+  const { errors } = formState;
+  function onSubmit(data) {
+    const { email, password } = data;
+    login({ email, password });
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormRowVertical label="Email address">
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormRowVertical label="Email address" error={errors?.email?.message}>
         <Input
           type="email"
           id="email"
           // This makes this form better for password managers
           autoComplete="username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           disabled={isLoging}
+          {...register('email', {
+            required: 'This field is required',
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: 'Please enter a valid email',
+            },
+          })}
         />
       </FormRowVertical>
-      <FormRowVertical label="Password">
+      <FormRowVertical label="Password" error={errors?.password?.message}>
         <Input
           type="password"
           id="password"
           autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           disabled={isLoging}
+          {...register('password', {
+            required: 'This field is required',
+            minLength: {
+              value: 8,
+              message: 'password needs a minimum of 8 characters',
+            },
+          })}
         />
       </FormRowVertical>
       <FormRowVertical>
