@@ -19,6 +19,7 @@ import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import Booking from './pages/Booking';
 import Checking from './pages/Checking';
+import ProtectedRoute from './ui/ProtectedRoute';
 //react query
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,7 +39,13 @@ const App = () => {
         <GolbalStyles />
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="account" element={<Account />} />

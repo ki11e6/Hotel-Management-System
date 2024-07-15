@@ -26,3 +26,19 @@ export const googleLogin = async () => {
     throw new Error(error.message || 'Google Auth login failed!');
   }
 };
+
+export const getCurrentUser = async () => {
+  try {
+    const { data: session, error: sessionError } =
+      await supabase.auth.getSession();
+    if (sessionError) throw sessionError;
+    if (!session.session) return null;
+
+    const { data, error: userError } = await supabase.auth.getUser();
+    if (userError) throw userError;
+    return data?.user;
+  } catch (error) {
+    console.error('Error getting current user', error);
+    throw new Error(error.message || 'Could not get current user');
+  }
+};
