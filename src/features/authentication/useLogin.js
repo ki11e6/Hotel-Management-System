@@ -8,10 +8,11 @@ const useLogin = () => {
   const navigate = useNavigate();
   const { mutate: login, isPending: isLoging } = useMutation({
     mutationFn: ({ email, password }) => emailLogin({ email, password }),
-    onSuccess: (user) => {
-      queryClient.setQueriesData(['user'], user);
+    onSuccess: (data) => {
+      //below can be used to fetch user details later
+      queryClient.setQueryData(['user'], data.user);
       toast.success('Login successful');
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
     },
     onError: (error) => {
       toast.warn(error.message);

@@ -42,3 +42,13 @@ export const getCurrentUser = async () => {
     throw new Error(error.message || 'Could not get current user');
   }
 };
+
+export const logout = async () => {
+  try {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+  } catch (error) {
+    console.error('Error logging out', error);
+    throw new Error(error.message || 'Could not log out');
+  }
+};
