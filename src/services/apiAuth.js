@@ -1,4 +1,4 @@
-import supabase from './supabase';
+import supabase, { supabaseUrl } from './supabase';
 export const emailLogin = async ({ email, password }) => {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -71,5 +71,36 @@ export const signup = async ({ fullName, email, password }) => {
   } catch (error) {
     console.error('Error signing in', error);
     throw new Error(error.message || 'Invalid username or password!');
+  }
+};
+
+//avatar url:https://nnkvyrvvnsajaqqpftru.supabase.co/storage/v1/object/public/avatars/default_user.jpg
+
+export const updateCurrentUser = async ({ password, fullName, avatar }) => {
+  try {
+    let updateData;
+    if (password) updateData = { password };
+    if (fullName) updateData = { data: { fullName } };
+    const { data, error } = await supabase.auth.updateUser(updateData);
+    if (error) throw error;
+    if (!avatar) return data;
+    //upload avatar
+    const fileName = `avatar-${data.user.id}-${Math.random()}`;
+    const { error: storageError } = await supabase.storage
+      .from('avatars')
+      .upload(fileName, avatar);
+    if (storageError) throw storageError;
+    //update avatar
+    const { data: updatedUser, error: updatedError } =
+      await supabase.auth.updateUser({
+        data: {
+          avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
+        },
+      });
+    if (updatedError) throw updatedError;
+    return updatedUser;
+  } catch (error) {
+    console.error('Error updating user', error);
+    throw new Error(error.message || 'Could not update user');
   }
 };
