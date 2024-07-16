@@ -52,3 +52,24 @@ export const logout = async () => {
     throw new Error(error.message || 'Could not log out');
   }
 };
+
+export const signup = async ({ fullName, email, password }) => {
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          fullName,
+          avatar: '',
+        },
+      },
+    });
+    if (error) throw error;
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('Error signing in', error);
+    throw new Error(error.message || 'Invalid username or password!');
+  }
+};

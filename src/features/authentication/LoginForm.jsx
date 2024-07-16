@@ -8,11 +8,11 @@ import { useForm } from 'react-hook-form';
 
 function LoginForm() {
   const { login, isLoging } = useLogin();
-  const { register, formState, handleSubmit } = useForm();
+  const { register, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
   function onSubmit(data) {
     const { email, password } = data;
-    login({ email, password });
+    login({ email, password }, { onSuccess: reset() });
   }
 
   return (
