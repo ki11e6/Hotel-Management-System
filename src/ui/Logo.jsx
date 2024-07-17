@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useDarkMode } from '../context/useDarkMode';
 
 const StyledLogo = styled.div`
   display: flex;
@@ -12,9 +13,14 @@ const Img = styled.img`
 `;
 
 function Logo() {
+  const { isDarkMode } = useDarkMode();
   return (
     <StyledLogo>
-      <Img src="/logo-3.png" alt="Logo" />
+      {isDarkMode ? (
+        <Img src="/beachresort-light.png" alt="Logo" />
+      ) : (
+        <Img src="/beachresort-dark.png" alt="Logo" />
+      )}
     </StyledLogo>
   );
 }

@@ -20,55 +20,58 @@ import PageNotFound from './pages/PageNotFound';
 import Booking from './pages/Booking';
 import Checking from './pages/Checking';
 import ProtectedRoute from './ui/ProtectedRoute';
+import { DarkModeProvider } from './context/DarkModeContext';
 //react query
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1 * 1000, //after 60sec it will be re fetched.
+      staleTime: 1 * 60 * 1000, //1 sec =1000milliseconds
     },
   },
 });
 
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <StyleSheetManager
-        shouldForwardProp={(propName) => isValidProp(propName)}
-      >
-        <GolbalStyles />
-        <BrowserRouter>
-          <Routes>
-            <Route
-              element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Navigate replace to="dashboard" />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="account" element={<Account />} />
-              <Route path="bookings" element={<Bookings />} />
-              <Route path="bookings/:bookingId" element={<Booking />} />
-              <Route path="checkin/:bookingId" element={<Checking />} />
-              <Route path="cabins" element={<Cabins />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="users" element={<Users />} />
-            </Route>
-            <Route path="login" element={<Login />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
-        <ToastContainer
-          position="top-center"
-          theme="colored"
-          newestOnTop="true"
-          pauseOnHover
-          closeOnClick
-        />
-      </StyleSheetManager>
-    </QueryClientProvider>
+    <DarkModeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <StyleSheetManager
+          shouldForwardProp={(propName) => isValidProp(propName)}
+        >
+          <GolbalStyles />
+          <BrowserRouter>
+            <Routes>
+              <Route
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<Navigate replace to="dashboard" />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="account" element={<Account />} />
+                <Route path="bookings" element={<Bookings />} />
+                <Route path="bookings/:bookingId" element={<Booking />} />
+                <Route path="checkin/:bookingId" element={<Checking />} />
+                <Route path="cabins" element={<Cabins />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="users" element={<Users />} />
+              </Route>
+              <Route path="login" element={<Login />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </BrowserRouter>
+          <ToastContainer
+            position="top-center"
+            theme="colored"
+            newestOnTop="true"
+            pauseOnHover
+            closeOnClick
+          />
+        </StyleSheetManager>
+      </QueryClientProvider>
+    </DarkModeProvider>
   );
 };
 
