@@ -42,7 +42,6 @@ const SalesChart = ({ bookings, numDays }) => {
         .reduce((acc, cur) => acc + cur.extraPrice, 0),
     };
   });
-  console.log(data);
   const colors = isDarkMode
     ? {
         totalSales: { stroke: '#4f46e5', fill: '#4f46e5' },
@@ -63,7 +62,7 @@ const SalesChart = ({ bookings, numDays }) => {
         {format(allDates.at(-1), 'dd MMM yyyy')}
       </Heading>
       <ResponsiveContainer height={300} width="100%">
-        <AreaChart data={data}>
+        <AreaChart data={data} margin={{ left: 20 }}>
           <XAxis
             dataKey="label"
             tick={{ fill: colors.text }}

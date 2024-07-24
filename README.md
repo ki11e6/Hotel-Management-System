@@ -31,3 +31,5 @@ This is internal hotal management system used by employees or owner to manage bo
 - Pre-fetching
 - react query cacheing
 - useNavigate's replace:true use
+- recharts
+- ErrorBoundaries

@@ -13,19 +13,18 @@ export const emailLogin = async ({ email, password }) => {
   }
 };
 
-export const googleLogin = async () => {
-  try {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-    });
-    if (error) throw error;
-    console.log('google data', data);
-    return data;
-  } catch (error) {
-    console.error('Error auth signing in', error);
-    throw new Error(error.message || 'Google Auth login failed!');
-  }
-};
+// export const googleLogin = async () => {
+//   try {
+//     const { data, error } = await supabase.auth.signInWithOAuth({
+//       provider: 'google',
+//     });
+//     if (error) throw error;
+//     return data;
+//   } catch (error) {
+//     console.error('Error auth signing in', error);
+//     throw new Error(error.message || 'Google Auth login failed!');
+//   }
+// };
 
 export const getCurrentUser = async () => {
   try {
@@ -66,7 +65,6 @@ export const signup = async ({ fullName, email, password }) => {
       },
     });
     if (error) throw error;
-    console.log(data);
     return data;
   } catch (error) {
     console.error('Error signing in', error);

@@ -5,12 +5,11 @@ import { toast } from 'react-toastify';
 const useSignup = () => {
   const { mutate: signup, isPending: isLoading } = useMutation({
     mutationFn: signupApi,
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
       toast.success('Signup successful');
     },
     onError: (error) => {
-      console.log(error);
+      console.error(error);
       toast.warn(error.message);
     },
   });
