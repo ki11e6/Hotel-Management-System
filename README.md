@@ -23,6 +23,17 @@ This is internal hotal management system used by employees or owner to manage bo
 | Form management         | <img src="https://raw.githubusercontent.com/react-hook-form/react-hook-form/master/docs/logo.png" alt="React Hook Form "  height="36"/>                                                                                                 | React Form        |
 | Backend                 | <a href="https://supabase.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/supabase-colored.svg" width="36" height="36" alt="supabase" /></a> | Supabase          |
 
+
+## Pending
+
+- Create new booking
+- edit booking
+- price editing
+- check-out requestss
+- billing to email
+- payment link to cutomer
+- responsive
+
 ## Learned
 
 - React patterns : React Render props pattern, Higher order component pattern and Compound component pattern

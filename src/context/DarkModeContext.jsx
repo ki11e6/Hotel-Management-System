@@ -4,7 +4,12 @@ import { useLocalStorageState } from '../hooks/useLocalStorageState';
 const DarkModeContext = createContext();
 
 const DarkModeProvider = ({ children }) => {
-  const [isDarkMode, setisDarkMode] = useLocalStorageState(false, 'isDarkMode');
+  //check browser dark mode
+  //window.matchMedia('(prefers-color-scheme: dark)').matches
+  const [isDarkMode, setisDarkMode] = useLocalStorageState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches,
+    'isDarkMode'
+  );
 
   useEffect(() => {
     if (isDarkMode) {
